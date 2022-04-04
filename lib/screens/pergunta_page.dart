@@ -23,7 +23,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
     final List<Map<String, Object>> perguntas = [
       {
         'texto': 'Qual é a sua cor favorita?',
-        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+        'respostas': ['Rosa', 'Vermelho', 'Verde', 'Branco'],
       },
       {
         'texto': 'Qual o seu animal favorito?',
