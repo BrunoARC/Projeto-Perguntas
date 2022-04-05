@@ -10,31 +10,37 @@ class PerguntaPage extends StatefulWidget {
 }
 
 class _PerguntaPageState extends State<PerguntaPage> {
-  int perguntaSelecionada = 0;
+  List<Map<String, Object>> perguntas = [
+    {
+      'texto': 'Qual é a sua cor favorita?',
+      'respostas': ['Rosa', 'Vermelho', 'Verde', 'Branco'],
+    },
+    {
+      'texto': 'Qual o seu animal favorito?',
+      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+    },
+    {
+      'texto': 'Qual a sua linguagem favorita?',
+      'respostas': ['Python', 'Dart', 'Java', 'Objective-c']
+    }
+  ];
 
+  int perguntaSelecionada = 0;
   void responder() {
     setState(() {
       perguntaSelecionada++;
     });
   }
 
+  bool get temPerguntaSelecionada {
+    return perguntaSelecionada > perguntas.length;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, Object>> perguntas = [
-      {
-        'texto': 'Qual é a sua cor favorita?',
-        'respostas': ['Rosa', 'Vermelho', 'Verde', 'Branco'],
-      },
-      {
-        'texto': 'Qual o seu animal favorito?',
-        'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
-      },
-      {
-        'texto': 'Qual a sua linguagem favorita?',
-        'respostas': ['Python', 'Dart', 'Java', 'Objective-c']
-      }
-    ];
-    List<String> respostas = perguntas[perguntaSelecionada].cast()['respostas'];
+    List<String> respostas = temPerguntaSelecionada
+        ? perguntas[perguntaSelecionada].cast()['respostas']
+        : [];
 
     return MaterialApp(
       home: Scaffold(
@@ -47,8 +53,8 @@ class _PerguntaPageState extends State<PerguntaPage> {
               Questao(
                   texto: perguntas[perguntaSelecionada]['texto'].toString()),
               ...respostas
-                  .map((String t) =>
-                      BotaoResposta(texto: t, quandoSelecionado: responder))
+                  .map((String textoRespostas) => BotaoResposta(
+                      texto: textoRespostas, quandoSelecionado: responder))
                   .toList(),
             ],
           ),
