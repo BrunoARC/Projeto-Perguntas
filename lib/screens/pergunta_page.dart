@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_perguntas/widgets/resposta.dart';
+import 'package:projeto_perguntas/widgets/resultado.dart';
 import '../widgets/questao.dart';
 
 class PerguntaPage extends StatefulWidget {
@@ -10,7 +11,7 @@ class PerguntaPage extends StatefulWidget {
 }
 
 class _PerguntaPageState extends State<PerguntaPage> {
-  List<Map<String, Object>> perguntas = [
+  List<Map<String, Object>> perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': ['Rosa', 'Vermelho', 'Verde', 'Branco'],
@@ -33,7 +34,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
   }
 
   bool get temPerguntaSelecionada {
-    return perguntaSelecionada > perguntas.length;
+    return perguntaSelecionada < perguntas.length;
   }
 
   @override
@@ -48,16 +49,20 @@ class _PerguntaPageState extends State<PerguntaPage> {
           title: const Text('Perguntas'),
         ),
         body: Center(
-          child: Column(
-            children: [
-              Questao(
-                  texto: perguntas[perguntaSelecionada]['texto'].toString()),
-              ...respostas
-                  .map((String textoRespostas) => BotaoResposta(
-                      texto: textoRespostas, quandoSelecionado: responder))
-                  .toList(),
-            ],
-          ),
+          child: temPerguntaSelecionada
+              ? Column(
+                  children: [
+                    Questao(
+                        texto:
+                            perguntas[perguntaSelecionada]['texto'].toString()),
+                    ...respostas
+                        .map((String textoRespostas) => BotaoResposta(
+                            texto: textoRespostas,
+                            quandoSelecionado: responder))
+                        .toList(),
+                  ],
+                )
+              : const Resultado(),
         ),
       ),
     );
