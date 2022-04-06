@@ -13,23 +13,40 @@ class _PerguntaPageState extends State<PerguntaPage> {
   List<Map<String, Object>> perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
-      'respostas': ['Rosa', 'Vermelho', 'Verde', 'Branco'],
+      'respostas': [
+        {'texto': 'Rosa', 'pontuacao': 1},
+        {'texto': 'Vermelho', 'pontuacao': 3},
+        {'texto': 'Verde', 'pontuacao': 8},
+        {'texto': 'Branco', 'pontuacao': 5},
+      ],
     },
     {
       'texto': 'Qual o seu animal favorito?',
-      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+      'respostas': [
+        {'texto': 'Coelho', 'pontuacao': 5},
+        {'texto': 'Cobra', 'pontuacao': 6},
+        {'texto': 'Elefante', 'pontuacao': 7},
+        {'texto': 'Leão', 'pontuacao': 8},
+      ],
     },
     {
       'texto': 'Qual a sua linguagem favorita?',
-      'respostas': ['Python', 'Dart', 'Java', 'Objective-c']
+      'respostas': [
+        {'nome': 'Python', 'pontuacao': 9},
+        {'nome': 'Dart', 'pontuacao': 10},
+        {'nome': 'Java', 'pontuacao': 4},
+        {'nome': 'Objective-c', 'pontuacao': 2},
+      ]
     }
   ];
-
+  int pontuacaoTotal = 0;
   int perguntaSelecionada = 0;
-  void responder() {
+  void responder(int pontuacao) {
     setState(() {
       perguntaSelecionada++;
+      pontuacaoTotal += pontuacao;
     });
+    print(pontuacaoTotal);
   }
 
   bool get temPerguntaSelecionada {
@@ -48,7 +65,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
               ? Questionario(
                   perguntaSelecionada: perguntaSelecionada,
                   perguntas: perguntas,
-                  responder: responder,
+                  quandoResponder: responder,
                 )
               : const Resultado(),
         ),
