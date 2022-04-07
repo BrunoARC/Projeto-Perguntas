@@ -32,10 +32,10 @@ class _PerguntaPageState extends State<PerguntaPage> {
     {
       'texto': 'Qual a sua linguagem favorita?',
       'respostas': [
-        {'nome': 'Python', 'pontuacao': 9},
-        {'nome': 'Dart', 'pontuacao': 10},
-        {'nome': 'Java', 'pontuacao': 4},
-        {'nome': 'Objective-c', 'pontuacao': 2},
+        {'texto': 'Python', 'pontuacao': 9},
+        {'texto': 'Dart', 'pontuacao': 10},
+        {'texto': 'Java', 'pontuacao': 4},
+        {'texto': 'Objective-c', 'pontuacao': 2},
       ]
     }
   ];
@@ -46,11 +46,17 @@ class _PerguntaPageState extends State<PerguntaPage> {
       perguntaSelecionada++;
       pontuacaoTotal += pontuacao;
     });
-    print(pontuacaoTotal);
   }
 
   bool get temPerguntaSelecionada {
     return perguntaSelecionada < perguntas.length;
+  }
+
+  reiniciarQuestionario() {
+    setState(() {
+      pontuacaoTotal = 0;
+      perguntaSelecionada = 0;
+    });
   }
 
   @override
@@ -67,7 +73,10 @@ class _PerguntaPageState extends State<PerguntaPage> {
                   perguntas: perguntas,
                   quandoResponder: responder,
                 )
-              : const Resultado(),
+              : Resultado(
+                  pontuacao: pontuacaoTotal,
+                  quandoReiniciarQuestionario: reiniciarQuestionario,
+                ),
         ),
       ),
     );
