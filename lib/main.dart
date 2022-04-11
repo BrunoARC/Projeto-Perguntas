@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_perguntas/screens/pergunta_page.dart';
+import 'package:projeto_perguntas/screens/pergunta_tela.dart';
 
 void main() => runApp(const PerguntaApp());
 
