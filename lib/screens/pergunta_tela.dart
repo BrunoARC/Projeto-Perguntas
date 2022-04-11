@@ -34,7 +34,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
       'respostas': [
         {'texto': 'Python', 'pontuacao': 9},
         {'texto': 'Dart', 'pontuacao': 10},
-        {'texto': 'Java', 'pontuacao': 4},
+        {'texto': 'Java', 'pontuacao': 3},
         {'texto': 'Objective-c', 'pontuacao': 2},
       ]
     }
