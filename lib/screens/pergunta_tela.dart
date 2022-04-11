@@ -23,7 +23,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
     {
       'texto': 'Qual o seu animal favorito?',
       'respostas': [
-        {'texto': 'Coelho', 'pontuacao': 5},
+        {'texto': 'Coelho', 'pontuacao': 1},
         {'texto': 'Cobra', 'pontuacao': 6},
         {'texto': 'Elefante', 'pontuacao': 7},
         {'texto': 'Leão', 'pontuacao': 8},
